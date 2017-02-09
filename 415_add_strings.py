@@ -41,6 +41,7 @@ class Solution(object):
         if len(rev1) == len(rev2):
             for i in range(len(rev1) - 1):
                 added = rev1[i] + rev2[i] + to_carry
+                # find_carry(added, to_carry, rev_added)
                 if added > 9:
                     rev_added.append(str(added % 10))
                     to_carry = added / 10
@@ -52,6 +53,7 @@ class Solution(object):
         else:
             for i in range(len(rev2)):
                 added = rev1[i] + rev2[i] + to_carry
+                # find_carry(added, to_carry, rev_added)
                 if added > 9:
                     rev_added.append(str(added % 10))
                     to_carry = added / 10
@@ -62,6 +64,7 @@ class Solution(object):
             # Now account for the rest of the digits in the longer list (rev1)
             for j in range(len(rev2), len(rev1) - 1):
                 added = rev1[j] + to_carry
+                find_carry(added, to_carry, rev_added)
                 if added > 9:
                     rev_added.append(str(added % 10))
                     to_carry = added / 10
@@ -76,6 +79,16 @@ class Solution(object):
         return "".join(rev_added[::-1])
 
 
+def find_carry(added, to_carry, rev_added):
+    if added > 9:
+        rev_added.append(str(added % 10))
+        to_carry = added / 10
+    else:
+        rev_added.append(str(added))
+        to_carry = 0
+    return added, to_carry, rev_added
+
+
 #########################################################################
 # Testing...
 solution = Solution()
@@ -87,4 +100,3 @@ print "'9', '99', expecting '108', got...", solution.addStrings('9', '99')
 print "'9876', '3258, expecting '13134', got...", solution.addStrings('9876', '3258')
 print "'9876', '13258', expecting '23134', got...", solution.addStrings('9876', '13258')
 print "Result is correct type?", type(solution.addStrings('2', '1')) == str
-
