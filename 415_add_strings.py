@@ -41,36 +41,36 @@ class Solution(object):
         if len(rev1) == len(rev2):
             for i in range(len(rev1) - 1):
                 added = rev1[i] + rev2[i] + to_carry
-                # find_carry(added, to_carry, rev_added)
-                if added > 9:
-                    rev_added.append(str(added % 10))
-                    to_carry = added / 10
-                else:
-                    rev_added.append(str(added))
-                    to_carry = 0
+                added, to_carry, rev_added = find_carry(added, to_carry, rev_added)              
+                # if added > 9:
+                #     rev_added.append(str(added % 10))
+                #     to_carry = added / 10
+                # else:
+                #     rev_added.append(str(added))
+                #     to_carry = 0
             rev_added.append(str(rev1[-1] + rev2[-1] + to_carry))
 
         else:
             for i in range(len(rev2)):
                 added = rev1[i] + rev2[i] + to_carry
-                # find_carry(added, to_carry, rev_added)
-                if added > 9:
-                    rev_added.append(str(added % 10))
-                    to_carry = added / 10
-                else:
-                    rev_added.append(str(added))
-                    to_carry = 0
+                added, to_carry, rev_added = find_carry(added, to_carry, rev_added)              
+                # if added > 9:
+                #     rev_added.append(str(added % 10))
+                #     to_carry = added / 10
+                # else:
+                #     rev_added.append(str(added))
+                #     to_carry = 0
 
             # Now account for the rest of the digits in the longer list (rev1)
             for j in range(len(rev2), len(rev1) - 1):
                 added = rev1[j] + to_carry
-                find_carry(added, to_carry, rev_added)
-                if added > 9:
-                    rev_added.append(str(added % 10))
-                    to_carry = added / 10
-                else:
-                    rev_added.append(str(added))
-                    to_carry = 0
+                added, to_carry, rev_added = find_carry(added, to_carry, rev_added)
+                # if added > 9:
+                #     rev_added.append(str(added % 10))
+                #     to_carry = added / 10
+                # else:
+                #     rev_added.append(str(added))
+                #     to_carry = 0
 
             rev_added.append(str(rev1[-1] + to_carry))
 
