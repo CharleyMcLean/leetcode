@@ -32,7 +32,7 @@ class Solution(object):
         counts = {}
         for num in nums:
             counts[num] = counts.get(num, 0) + 1
-            compliments[num] = [target-num]
+            compliments[num] = target - num
 
         # Create variables to hold the two index values
         first_ind = int()
@@ -44,6 +44,7 @@ class Solution(object):
             if counts[num] == 2 and num * 2 == target:
                 first_ind = nums.index(num)
                 sec_ind = nums[(first_ind + 1):].index(num) + first_ind + 1
+                return [first_ind, sec_ind]
 
         # If the above condition is not true, find the num that has the
         # the compliment
@@ -51,9 +52,7 @@ class Solution(object):
             if compliments[num] in nums:
                 first_ind = nums.index(num)
                 sec_ind = nums.index(compliments[num])
-                
-        return [first_ind, sec_ind]
-
+                return [first_ind, sec_ind]
 
 
 #########################################################################
