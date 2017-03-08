@@ -16,13 +16,9 @@ class Solution(object):
 
         for i in range(1, len(nums)):
             possibilities = [(maxi * nums[i]), (mini * nums[i]), nums[i]]
-            print "possibilities are:", possibilities
             maxi = max(possibilities)
-            print "maxi is", maxi
             mini = min(possibilities)
-            print "mini is", mini
             result = max(maxi, result)
-            print "result is", result
 
         return result
 
